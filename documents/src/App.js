@@ -8,7 +8,7 @@ import ManualV1 from './pages/ManualV1.js';
 function App() {
     return (
         <BrowserRouter>
-          <Route exact path='/' component={ManualV1} />
+          <Route exact path='/cl-bolt' component={ManualV1} />
         </BrowserRouter>
     );
 }
