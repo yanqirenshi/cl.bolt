@@ -1,4 +1,14 @@
 class IndexCore {
+    callbacks (menus, setMenus) {
+        return {
+            changeCheck: (menu_code) => setMenus(INDEX_CORE.changeCheck(menu_code, menus)),
+            clearAll: () => setMenus(INDEX_CORE.clearAll(menus)),
+            checkAll: () => setMenus(INDEX_CORE.checkAll(menus)),
+        };
+    }
+    isActive (code, menus) {
+        return  menus.find(d=>d.code===code).active;
+    }
     changeCheck (menu_code, menus) {
         return menus.map(d => {
             if (d.code!==menu_code)

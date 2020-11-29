@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Indexe, { INDEX_CORE } from './Indexe.js';
+import Index, { INDEX_CORE } from './Index.js';
 
-import * as section from './serialization/Sections.js';
+import * as Sections from './serialization/Sections.js';
 
 function MessageSerialization () {
     const [menus, setMenus] = useState([
@@ -21,40 +21,31 @@ function MessageSerialization () {
         { code: '13', label: 'MarkerTable',          active: true },
     ]);
 
-    const callbacks = {
-        changeCheck: (menu_code) => setMenus(INDEX_CORE.changeCheck(menu_code, menus)),
-        clearAll: () => setMenus(INDEX_CORE.clearAll(menus)),
-        checkAll: () => setMenus(INDEX_CORE.checkAll(menus)),
-    };
-
-    const isActive = (code) => menus.find(d=>d.code===code).active;
-    return (
-        <>
-          <div style={{display:'flex'}}>
-            <div>
-              <Indexe source={menus}
+    const callbacks = INDEX_CORE.callbacks(menus, setMenus);
+    const isActive = (code) => INDEX_CORE.isActive (code, menus);
+    return <div style={{display:'flex'}}>
+             <div>
+               <Index source={menus}
                       original_url="https://boltprotocol.org/v1/#serialization"
                       callbacks={callbacks} />
-            </div>
+             </div>
 
-            <div>
-              {isActive('1')  && <section.Overview />}
-              {isActive('2')  && <section.Markers />}
-              {isActive('3')  && <section.SizedValues />}
-              {isActive('4')  && <section.Null />}
-              {isActive('5')  && <section.Booleans />}
-              {isActive('6')  && <section.Integers />}
-              {isActive('7')  && <section.FloatingPointNumbers />}
-              {isActive('8')  && <section.String />}
-              {isActive('9')  && <section.Lists />}
-              {isActive('10') && <section.Maps />}
-              {isActive('11') && <section.Structures />}
-              {isActive('12') && <section.GraphTypeStructures />}
-              {isActive('13') && <section.MarkerTable />}
-            </div>
-          </div>
-        </>
-    );
+             <div>
+               {isActive('1')  && <Sections.Overview />}
+               {isActive('2')  && <Sections.Markers />}
+               {isActive('3')  && <Sections.SizedValues />}
+               {isActive('4')  && <Sections.Null />}
+               {isActive('5')  && <Sections.Booleans />}
+               {isActive('6')  && <Sections.Integers />}
+               {isActive('7')  && <Sections.FloatingPointNumbers />}
+               {isActive('8')  && <Sections.String />}
+               {isActive('9')  && <Sections.Lists />}
+               {isActive('10') && <Sections.Maps />}
+               {isActive('11') && <Sections.Structures />}
+               {isActive('12') && <Sections.GraphTypeStructures />}
+               {isActive('13') && <Sections.MarkerTable />}
+             </div>
+           </div>;
 }
 
 export default MessageSerialization;

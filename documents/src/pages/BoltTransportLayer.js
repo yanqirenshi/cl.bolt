@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Sessions from './transport/Sessions.js';
-import Connecting from './transport/Connecting.js';
-import Handshake from './transport/Handshake.js';
-import MessageTransferEncoding from './transport/MessageTransferEncoding.js';
-import Disconnecting from './transport/Disconnecting.js';
+import Index, { INDEX_CORE } from './Index.js';
+
+import * as Sections from './transport/Sections.js';
 
 function BoltTransportLayer () {
-    return (
-        <>
-          <section className="section">
-            <div className="container">
-              {/* <h1 className="title"></h1> */}
-              <h2 className="subtitle">
-                <a href="https://boltprotocol.org/v1/#transport">本家サイト</a>
-              </h2>
-            </div>
-          </section>
+    const [menus, setMenus] = useState([
+        { code:  '1', label: 'Sessions',                  active: true },
+        { code:  '2', label: 'Connecting',                active: true },
+        { code:  '3', label: 'Handshake',                 active: true },
+        { code:  '4', label: 'Message Transfer Encoding', active: true },
+        { code:  '5', label: 'Disconnecting',             active: true },
+    ]);
 
-          <Sessions />
-          <Connecting />
-          <Handshake />
-          <MessageTransferEncoding />
-          <Disconnecting />
-        </>
+    const callbacks = INDEX_CORE.callbacks(menus, setMenus);
+    const isActive = (code) => INDEX_CORE.isActive (code, menus);
+    return (
+        <div style={{display:'flex'}}>
+          <div>
+            <Index source={menus}
+                   original_url="https://boltprotocol.org/v1/#transport"
+                   callbacks={callbacks} />
+          </div>
+
+          <div>
+            {isActive('1')  && <Sections.Sessions />}
+            {isActive('2')  && <Sections.Connecting />}
+            {isActive('3')  && <Sections.Handshake />}
+            {isActive('4')  && <Sections.MessageTransferEncoding />}
+            {isActive('5')  && <Sections.Disconnecting />}
+          </div>
+        </div>
     );
 }
 

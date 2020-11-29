@@ -4,7 +4,7 @@ import INDEX_CORE from './IndexCore.js';
 
 export { INDEX_CORE };
 
-function Indexe (props) {
+function Index (props) {
     const onChanged = (e) =>
           props.callbacks.changeCheck(e.target.getAttribute('code'));
     const clickClearAll = () => props.callbacks.clearAll();
@@ -47,4 +47,4 @@ function Indexe (props) {
           </section>;
 }
 
-export default Indexe;
+export default Index;

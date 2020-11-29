@@ -1,28 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Initialization from './messaging/Initialization.js';
-import Pipelining from './messaging/Pipelining.js';
-import FailureHandling from './messaging/FailureHandling.js';
-import Messages from './messaging/Messages.js';
+import Index, { INDEX_CORE } from './Index.js';
+
+import * as Sections from './messaging/Sections.js';
 
 function MessagingLayer () {
-    return (
-        <>
-          <section className="section">
-            <div className="container">
-              {/* <h1 className="title">Messaging Layer</h1> */}
-              <h2 className="subtitle">
-                <a href="https://boltprotocol.org/v1/#messaging">本家サイト</a>
-              </h2>
-            </div>
-          </section>
+    const [menus, setMenus] = useState([
+        { code:  '1', label: 'Initialization',   active: true },
+        { code:  '2', label: 'Pipelining',       active: true },
+        { code:  '3', label: 'Failure Handling', active: true },
+        { code:  '4', label: 'Messages',         active: true },
+    ]);
 
-          <Initialization />
-          <Pipelining />
-          <FailureHandling />
-          <Messages />
-        </>
-    );
+    const callbacks = INDEX_CORE.callbacks(menus, setMenus);
+    const isActive = (code) => INDEX_CORE.isActive (code, menus);
+    return <div style={{display:'flex'}}>
+             <div>
+               <Index source={menus}
+                      original_url="https://boltprotocol.org/v1/#messaging"
+                      callbacks={callbacks} />
+             </div>
+
+             <div>
+               {isActive('1')  && <Sections.Initialization />}
+               {isActive('2')  && <Sections.Pipelining />}
+               {isActive('3')  && <Sections.FailureHandling />}
+               {isActive('4')  && <Sections.Messages />}
+             </div>
+           </div>;
 }
 
 export default MessagingLayer;
