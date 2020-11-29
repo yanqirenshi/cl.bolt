@@ -1,5 +1,10 @@
 import React from 'react';
 
+import Initialization from './messaging/Initialization.js';
+import Pipelining from './messaging/Pipelining.js';
+import FailureHandling from './messaging/FailureHandling.js';
+import Messages from './messaging/Messages.js';
+
 function MessagingLayer () {
     return (
         <>
@@ -12,33 +17,10 @@ function MessagingLayer () {
             </div>
           </section>
 
-          <section className="section">
-            <div className="container">
-              <h1 className="title">Initialization</h1>
-              {/* <h2 className="subtitle"></h2> */}
-            </div>
-          </section>
-
-          <section className="section">
-            <div className="container">
-              <h1 className="title">Pipelining</h1>
-              {/* <h2 className="subtitle"></h2> */}
-            </div>
-          </section>
-
-          <section className="section">
-            <div className="container">
-              <h1 className="title">Failure handling</h1>
-              {/* <h2 className="subtitle"></h2> */}
-            </div>
-          </section>
-
-          <section className="section">
-            <div className="container">
-              <h1 className="title">Messages</h1>
-              {/* <h2 className="subtitle"></h2> */}
-            </div>
-          </section>
+          <Initialization />
+          <Pipelining />
+          <FailureHandling />
+          <Messages />
         </>
     );
 }
