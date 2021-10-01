@@ -1,4 +1,4 @@
-(defsystem "cl-bolt"
+(defsystem "cl.bolt"
   :version "0.1.0"
   :author ""
   :license ""
@@ -9,15 +9,15 @@
                   :components ((:file "package")))
                  (:file "package"))))
   :description ""
-  :in-order-to ((test-op (test-op "cl-bolt/tests"))))
+  :in-order-to ((test-op (test-op "cl.bolt/tests"))))
 
-(defsystem "cl-bolt/tests"
+(defsystem "cl.bolt/tests"
   :author ""
   :license ""
-  :depends-on ("cl-bolt"
+  :depends-on ("cl.bolt"
                "rove")
   :components ((:module "tests"
                 :components
                 ((:file "main"))))
-  :description "Test system for cl-bolt"
+  :description "Test system for cl.bolt"
   :perform (test-op (op c) (symbol-call :rove :run c)))

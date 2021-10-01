@@ -1,6 +1,6 @@
-(defpackage cl-bolt.client
+(defpackage cl.bolt.client
   (:use :cl))
-(in-package :cl-bolt.client)
+(in-package :cl.bolt.client)
 
 
 (defun create-server (port)

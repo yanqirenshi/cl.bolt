@@ -1,5 +1,5 @@
-(defpackage cl-bolt
+(defpackage cl.bolt
   (:use :cl))
-(in-package :cl-bolt)
+(in-package :cl.bolt)
 
 ;; blah blah blah.
